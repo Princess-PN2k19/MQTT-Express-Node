@@ -1,0 +1,135 @@
+<html>
+<head>
+	<title>PJ's MOWS</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="header">
+	  <h1>MQTT Over Websocket</h1>
+	</div>
+
+	<div class="mows">
+		<div id="broker" class="container" class="card">
+			<center>
+				<h2 class="card-header">Broker</h2>
+			</center>
+			<div class="card-body">
+				<form>
+					<div class="col-sm-8" class="form-group">
+						<label class="bmd-label-static">Address:</label>
+						<input type="text" class="form-control" id="address" value="wss://test.mosquitto.org:8081/mqtt">
+						<label class="bmd-label-static">Status:</label>
+						<input type="text" class="form-control" id="status">
+					</div>
+					<div class="col-sm-6">
+						<button id="btn-connect" type="button">Connect</button>
+						<button id="btn-disconnect" type="button">Disconnect</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="subscribe" class="container" class="card">
+			<center>
+				<h2 class="card-header">Subscribe</h2>
+			</center>
+			<div class="card-body">
+				<form>
+					<div class="col-sm-8" class="form-group">
+						<label class="bmd-label-static">Topic:</label>
+						<input type="text" class="form-control" id="sub-topic">
+					</div>
+					<div class="col-sm-6">
+						<button id="btn-subscribe" type="button">Subscribe</button>
+						<button id="btn-unsubscribe" type="button">Unsubscribe</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+
+
+		<div id="publish" class="container" class="card">
+			<center>
+				<h2 class="card-header">Publish</h2>
+			</center>
+			<div class="card-body">
+				<form>
+					<div class="col-sm-8" class="form-group">
+						<label class="bmd-label-static">Topic:</label>
+						<input type="text" class="form-control" id="pub-topic">
+						<label class="bmd-label-static">Payload:</label>
+						<input type="text" class="form-control" id="payload">
+					</div>
+					<div class="col-sm-6">
+						<button id="btn-publish" type="button">Publish</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<br>
+		<div id="PubHistory" class="col-md-12">
+			<div class="row">
+				<div id="PubsubTbl" class="col-md-12">
+					<h4>Publication History</h4>
+				</div>
+			</div>
+			<div id="pubSubDiv" class="row overflow-auto">
+				<table class="col-md-12" class="table table-bordered" class="table table-hover">
+					<thead>
+						<tr>
+							<th id="th1" scope="col">Topic</th>
+							<th id="th2" scope="col">Payload</th>
+							<th id="th3" scope="col">Time Stamp</th>
+						</tr>
+					</thead>
+					<tbody id="tBodyPub">
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br>
+		<div id="SubHistory" class="col-md-12">
+			<div class="row">
+				<div id="PubSubTbl" class="col-md-12">
+					<h4>Subscription History</h4>
+				</div>
+			</div>
+			<div id="pubSubDiv" class="row overflow-auto">
+				<table class="col-md-12" class="table table-bordered" class="table table-hover">
+					<thead>
+						<tr>
+							<th id="subTh1" scope="col">Topic</th>
+							<th id="subTh2" scope="col">Time Stamp</th>
+						</tr>
+					</thead>
+					<tbody id="tBodySub">
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div id="tblDiv" class="row overflow-auto">
+		<table class="table table-bordered" class="table table-hover">
+			<thead>
+				<tr>
+					<th id="th1" class="danger" scope="col">Topic</th>
+					<th id="th2" class="danger" scope="col">Payload</th>
+					<th id="th3" class="danger" scope="col">Time Stamp</th>
+				</tr>
+			</thead>
+			<tbody id="tBody">
+			</tbody>
+		</table>
+	</div>
+</body>
+<script src="scripts/browser-mqtt.js"></script>
+<script src="scripts/controller.js"></script>
+
+</html>
